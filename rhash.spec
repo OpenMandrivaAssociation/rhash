@@ -59,8 +59,7 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 
 %build
-%_setup_compile_flags
-%make OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{?__global_ldflags}" build-shared
+%make OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
 
 %install
 make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} install-shared install-lib-shared
