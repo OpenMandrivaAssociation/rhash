@@ -7,7 +7,7 @@ Summary:	Great utility for computing hash sums
 Group:		System/Libraries
 License:	MIT
 URL:		https://github.com/rhash/RHash
-Source0:	https://github.com/rhash/RHash/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
 
 
 %description
@@ -59,7 +59,7 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 
 %build
-%make cc="%{__cc}" OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
+%make CC="%{__cc}" OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
 
 %install
 make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} install-shared install-lib-shared
