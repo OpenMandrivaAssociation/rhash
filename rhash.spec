@@ -1,14 +1,13 @@
 %define _disable_lto 1
 
-Name:           rhash
-Version:        1.3.4
-Release:        1
-Summary:        Great utility for computing hash sums
-
-Group:          System/Libraries
-License:        MIT
-URL:            https://github.com/rhash/RHash
-Source0:        https://github.com/rhash/RHash/archive/v%{version}/%{name}-%{version}.tar.gz
+Name:		rhash
+Version:	1.3.5
+Release:	1
+Summary:	Great utility for computing hash sums
+Group:		System/Libraries
+License:	MIT
+URL:		https://github.com/rhash/RHash
+Source0:	https://github.com/rhash/RHash/archive/v%{version}/%{name}-%{version}.tar.gz
 
 
 %description
@@ -30,11 +29,11 @@ Features:
 
 %libpackage rhash 0
 
-%package        devel
-Summary:        Development files for lib%{name}
-Group:          Development/C
-Requires:       %{name} = %{version}-%{release}
-Requires:	%{mklibname rhash 0} = %{version}-%{release}
+%package devel
+Summary:	Development files for lib%{name}
+Group:		Development/C
+Requires:	%{name} = %{EVRD}
+Requires:	%{mklibname rhash 0} = %{EVRD}
 
 %description    devel
 LibRHash is a professional,  portable,  thread-safe  C library for computing
@@ -60,8 +59,7 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 
 %build
-%make OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{?__global_ldflags}" build-shared
-
+%make cc="%{__cc}" OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
 
 %install
 make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} install-shared install-lib-shared
@@ -70,7 +68,6 @@ make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} -C librhash instal
 
 %check
 make test-shared
-
 
 %files
 %doc README COPYING
@@ -81,11 +78,3 @@ make test-shared
 %files devel
 %{_includedir}/*
 %{_libdir}/*.so
-
-
-%changelog
-* Mon Mar 20 2017 Orion Poplawski <orion@cora.nwra.com> - 1.3.4-2
-- Add %%check section
-
-* Thu Mar 9 2017 Orion Poplawski <orion@cora.nwra.com> - 1.3.4-1
-- Initial Fedora package
