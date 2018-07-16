@@ -1,7 +1,7 @@
 %define _disable_lto 1
 
 Name:		rhash
-Version:	1.3.5
+Version:	1.3.6
 Release:	1
 Summary:	Great utility for computing hash sums
 Group:		System/Libraries
