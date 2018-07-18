@@ -8,6 +8,8 @@ Group:		System/Libraries
 License:	MIT
 URL:		https://github.com/rhash/RHash
 Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
+BuildRequires:	gettext-devel
+BuildRequires:	pkgconfig(openssl)
 
 %description
 RHash is a console utility for calculation  and verification of magnet links
@@ -58,6 +60,8 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 
 %build
+%setup_compile_flags
+./configure --cc=%{__cc} --prefix=%{_prefix}
 %make CC="%{__cc}" OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
 
 %install
