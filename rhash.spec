@@ -9,7 +9,6 @@ License:	MIT
 URL:		https://github.com/rhash/RHash
 Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
 
-
 %description
 RHash is a console utility for calculation  and verification of magnet links
 and a wide range of hash sums like  CRC32,  MD4, MD5,  SHA1, SHA256, SHA512,
