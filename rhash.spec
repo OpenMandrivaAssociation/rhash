@@ -8,6 +8,7 @@ Group:		System/Libraries
 License:	MIT
 URL:		https://github.com/rhash/RHash
 Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
+Patch0:		rhash-1.3.6-makefile.patch
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(openssl)
 
@@ -56,18 +57,25 @@ developing applications that use lib%{name}.
 
 %prep
 %setup -q -n RHash-%{version}
+%autopatch -p1
 sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 
 %build
 %setup_compile_flags
-./configure --cc=%{__cc} --prefix=%{_prefix}
+./configure \
+	--cc="%{__cc}" \
+	--prefix=%{_prefix} \
+	--sysconfdir=%{_sysconfdir} \
+	--libdir=%{_libdir} \
+	--enable-lib-shared \
+	--extra-cflags="%{optflags}" \
+	--extra-ldflags="%{ldflags}"
+
 %make CC="%{__cc}" OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
 
 %install
-make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} install-shared install-lib-shared
-make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} -C librhash install-so-link install-headers
-
+make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} install-lib-shared install-lib-so-link install-pkg-config install-headers
 
 %check
 make test-shared

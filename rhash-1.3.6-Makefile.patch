@@ -1,0 +1,25 @@
+diff -Nru a/librhash/Makefile b/librhash/Makefile
+--- a/librhash/Makefile	2018-03-14 02:42:17.000000000 +0100
++++ b/librhash/Makefile	2018-04-20 12:51:26.219202014 +0200
+@@ -10,7 +10,7 @@
+ TEST_STATIC = test_static$(EXEC_EXT)
+ TEST_SHARED = test_shared$(EXEC_EXT)
+ INSTALL_DATA    = $(INSTALL) -m 644
+-INSTALL_SHARED  = $(INSTALL) -m 644
++INSTALL_SHARED  = $(INSTALL) -m 755
+ 
+ all: $(BUILD_TARGETS)
+ lib-static: $(LIBRHASH_STATIC)
+diff -Nru a/Makefile b/Makefile
+--- a/Makefile	2018-03-14 02:42:17.000000000 +0100
++++ b/Makefile	2018-04-20 12:43:24.792560056 +0200
+@@ -116,6 +116,9 @@
+ install-lib-so-link:
+ 	+cd librhash && $(MAKE) install-so-link
+ 
++install-headers:
++	+cd librhash && $(MAKE) install-headers
++
+ $(LIBRHASH_SHARED): $(LIBRHASH_FILES)
+ 	+cd librhash && $(MAKE) lib-shared
+ 
