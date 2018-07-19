@@ -92,3 +92,4 @@ make test-shared
 %files devel
 %{_includedir}/*
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/librhash.pc
