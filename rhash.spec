@@ -63,8 +63,11 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 %build
 %setup_compile_flags
+export CC=gcc
+export CXX=g++
+
 ./configure \
-	--cc="%{__cc}" \
+	--cc="gcc" \
 	--prefix=%{_prefix} \
 	--sysconfdir=%{_sysconfdir} \
 	--libdir=%{_libdir} \
@@ -72,10 +75,10 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 	--extra-cflags="%{optflags}" \
 	--extra-ldflags="%{ldflags}"
 
-%make CC="%{__cc}" OPTFLAGS="%{optflags}" OPTLDFLAGS="-g %{ldflags}" build-shared
+%make_build
 
 %install
-make DESTDIR=%{buildroot} PREFIX=%{_prefix} LIBDIR=%{_libdir} install-lib-shared install-lib-so-link install-pkg-config install-headers
+%make_install install-lib-shared install-lib-so-link install-pkg-config install-headers
 
 %check
 make test-shared
