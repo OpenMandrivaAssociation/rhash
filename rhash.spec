@@ -2,7 +2,7 @@
 
 Name:		rhash
 Version:	1.3.6
-Release:	1
+Release:	2
 Summary:	Great utility for computing hash sums
 Group:		System/Libraries
 License:	MIT
