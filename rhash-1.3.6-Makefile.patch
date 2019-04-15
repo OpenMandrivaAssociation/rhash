@@ -18,7 +18,7 @@ diff -Nru a/Makefile b/Makefile
  	+cd librhash && $(MAKE) install-so-link
  
 +install-headers:
-+	+cd librhash && $(MAKE) install-headers
++	+cd librhash && $(MAKE) install-lib-headers
 +
  $(LIBRHASH_SHARED): $(LIBRHASH_FILES)
  	+cd librhash && $(MAKE) lib-shared

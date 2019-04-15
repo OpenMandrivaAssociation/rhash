@@ -1,8 +1,6 @@
-%define _disable_lto 1
-
 Name:		rhash
-Version:	1.3.6
-Release:	2
+Version:	1.3.8
+Release:	1
 Summary:	Great utility for computing hash sums
 Group:		System/Libraries
 License:	MIT
@@ -31,13 +29,16 @@ Features:
 
 %libpackage rhash 0
 
-%package devel
+%define devname %mklibname -d rhash
+
+%package -n %{devname}
 Summary:	Development files for lib%{name}
 Group:		Development/C
 Requires:	%{name} = %{EVRD}
 Requires:	%{mklibname rhash 0} = %{EVRD}
+%rename %{name}-devel
 
-%description    devel
+%description -n %{devname}
 LibRHash is a professional,  portable,  thread-safe  C library for computing
 a wide variety of hash sums, such as  CRC32, MD4, MD5, SHA1, SHA256, SHA512,
 SHA3,   AICH,  ED2K,  Tiger,  DC++ TTH,  BitTorrent BTIH,   GOST R 34.11-94,
@@ -63,11 +64,9 @@ sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 %build
 %setup_compile_flags
-export CC=gcc
-export CXX=g++
 
 ./configure \
-	--cc="gcc" \
+	--cc="%{__cc}" \
 	--prefix=%{_prefix} \
 	--sysconfdir=%{_sysconfdir} \
 	--libdir=%{_libdir} \
@@ -78,18 +77,18 @@ export CXX=g++
 %make_build
 
 %install
-%make_install install-lib-shared install-lib-so-link install-pkg-config install-headers
+%make_install install-lib-shared install-lib-so-link install-pkg-config install-lib-headers
 
 %check
 make test-shared
 
 %files
-%doc README COPYING
+%doc COPYING
 %config(noreplace) %{_sysconfdir}/rhashrc
 %{_bindir}/*
 %{_mandir}/man1/*.1*
 
-%files devel
+%files -n %{devname}
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/librhash.pc
