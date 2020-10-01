@@ -1,5 +1,5 @@
 Name:		rhash
-Version:	1.3.9
+Version:	1.4.0
 Release:	1
 Summary:	Great utility for computing hash sums
 Group:		System/Libraries
