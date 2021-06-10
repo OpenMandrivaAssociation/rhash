@@ -55,15 +55,12 @@ Features:
 The %{name}-devel package contains libraries and header files for
 developing applications that use lib%{name}.
 
-
 %prep
-%setup -q -n RHash-%{version}
-%autopatch -p1
+%autosetup -n RHash-%{version} -p1
 sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
-
 %build
-%setup_compile_flags
+%set_build_flags
 
 ./configure \
 	--cc="%{__cc}" \
