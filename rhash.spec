@@ -1,12 +1,13 @@
 Name:		rhash
-Version:	1.4.1
+Version:	1.4.2
 Release:	1
-Summary:	Great utility for computing hash sums
+Summary:	Utility for computing hash sums
 Group:		System/Libraries
 License:	MIT
 URL:		https://github.com/rhash/RHash
 Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
 Patch0:		rhash-1.3.6-Makefile.patch
+Patch1:		rhash-1.4.2-clangdetection.patch
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(openssl)
 

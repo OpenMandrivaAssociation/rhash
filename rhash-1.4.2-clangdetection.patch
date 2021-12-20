@@ -1,0 +1,11 @@
+diff -up RHash-1.4.2/configure.omv~ RHash-1.4.2/configure
+--- RHash-1.4.2/configure.omv~	2021-12-21 00:23:10.849326990 +0100
++++ RHash-1.4.2/configure	2021-12-21 00:23:34.408393994 +0100
+@@ -516,6 +516,7 @@ else
+     cc_name_tmp=
+     if run_cmd "$CC -v"; then
+       cc_name_tmp=$($CC -v 2>&1 | tail -n 1 | cut -d ' ' -f 1)
++      [ "$cc_name_tmp" = "Selected" ] && cc_name_tmp=$(basename $CC)
+     elif run_cmd "$CC --version"; then
+       cc_name_tmp=$($CC --version 2>&1 | head -n 1 | cut -d ' ' -f 1)
+     fi
