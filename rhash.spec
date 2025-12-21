@@ -8,6 +8,11 @@ URL:		https://github.com/rhash/RHash
 Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
 Patch0:		rhash-1.3.6-Makefile.patch
 Patch1:		rhash-1.4.2-clangdetection.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(openssl)
 
