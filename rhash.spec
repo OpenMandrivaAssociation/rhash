@@ -1,13 +1,13 @@
 Name:		rhash
-Version:	1.4.2
-Release:	2
+Version:	1.4.6
+Release:	1
 Summary:	Utility for computing hash sums
 Group:		System/Libraries
 License:	MIT
 URL:		https://github.com/rhash/RHash
 Source0:	https://github.com/rhash/RHash/archive/v%{version}/RHash-%{version}.tar.gz
-Patch0:		rhash-1.3.6-Makefile.patch
-Patch1:		rhash-1.4.2-clangdetection.patch
+# dropped (no longer applies): Patch0:		rhash-1.3.6-Makefile.patch
+# dropped (no longer applies): Patch1:		rhash-1.4.6-clangdetection.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
@@ -62,7 +62,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use lib%{name}.
 
 %prep
-%autosetup -n RHash-%{version} -p1
+%autosetup -n RHash-1.4.6 -p1
 sed -i -e '/^INSTALL_SHARED/s/644/755/' librhash/Makefile
 
 %build
